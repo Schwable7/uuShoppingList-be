@@ -6,39 +6,19 @@ router.post('/create', async (req, res) => {
     await ShoppingListService.createShoppingList(req, res)
 });
 
-router.get('/getAll', async (req, res) => {
-    await ShoppingListService.getAllShoppingLists()
+router.get('/list', async (req, res) => {
+    await ShoppingListService.getAllShoppingLists(req, res)
 });
 
 router.get('/:id/detail', async (req, res) => {
-    await ShoppingListService.getShoppingList()
+    await ShoppingListService.getShoppingList(req, res)
 });
 router.put('/:id/update', async (req, res) => {
-    await ShoppingListService.updateShoppingList()
+    await ShoppingListService.updateShoppingList(req, res)
 });
 
 router.delete('/:id/delete', async (req, res) => {
-    await ShoppingListService.deleteShoppingList()
-});
-
-router.post('/:id/addItem', async (req, res) => {
-    await ShoppingListService.addItem()
-});
-
-router.delete('/:id/removeItem', async (req, res) => {
-    await ShoppingListService.removeItem()
-});
-
-router.put('/:id/updateItem', async (req, res) => {
-    await ShoppingListService.updateItem()
-});
-
-router.post('/:id/addMember', async (req, res) => {
-    await ShoppingListService.addMember()
-});
-
-router.delete('/:id/removeMember', async (req, res) => {
-    await ShoppingListService.removeMember()
+    await ShoppingListService.deleteShoppingList(req, res)
 });
 
 module.exports = router;

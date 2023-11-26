@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: Shopping List API
+  version: 1.0.0
+  description: API for managing shopping lists
+
+paths:
+  /create:
+    post:
+      summary: Create a new shopping list
+      tags:
+          - shopping list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingList'
+      responses:
+        '201':
+          description: Shopping list created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingList'
+        '400':
+          description: Invalid input
+
+  /list:
+    get:
+      summary: Get all shopping lists
+      tags:
+          - shopping list
+      responses:
+        '200':
+          description: A list of shopping lists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShoppingList'
+
+  /{id}/detail:
+    get:
+      summary: Get a shopping list by ID
+      tags:
+          - shopping list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Shopping list data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingList'
+        '404':
+          description: Shopping list not found
+
+  /{id}/update:
+    put:
+      summary: Update a shopping list
+      tags:
+          - shopping list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingList'
+      responses:
+        '200':
+          description: Shopping list updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingList'
+        '400':
+          description: Invalid input
+        '404':
+          description: Shopping list not found
+
+  /{id}/delete:
+    delete:
+      summary: Delete a shopping list
+      tags:
+          - shopping list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Shopping list deleted successfully
+        '404':
+          description: Shopping list not found
+
+components:
+  schemas:
+    ShoppingList:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Groceries"
+        owner:
+          $ref: '#/components/schemas/User'
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        archived:
+          type: boolean
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        name:
+          type: string
+          example: "Mike"
+    Item:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Milk"
+
