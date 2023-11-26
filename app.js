@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
 app.use(express.json());
+app.use(cors());
 
 const shoppingListRouter = require("./controller/shoppingList-controller");
 const userRouter = require("./controller/user-controller");

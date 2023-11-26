@@ -4,6 +4,8 @@ info:
   version: 1.0.0
   description: API for managing shopping lists
 
+servers:
+    - url: http://localhost:3000/
 paths:
   /create:
     post:
