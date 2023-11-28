@@ -3,8 +3,12 @@ const express = require("express");
 const UserService = require("../service/user-service");
 const router = express.Router();
 
-router.post('/create', async (req, res) => {
-    await UserService.createUser()
+router.post('/register', async (req, res) => {
+    await UserService.createUser(req, res)
+});
+
+router.post('/login', async (req, res) => {
+    await UserService.login(req, res)
 });
 
 router.get('/get', async (req, res) => {
