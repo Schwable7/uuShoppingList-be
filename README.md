@@ -6,7 +6,9 @@ This version of applicaiton is connected to MongoDB and has no authentication an
 - Create new shopping list
 - Get shopping list by ID
 - List all shopping lists
-- Update shopping list
+- Update shopping list title/archived status
+- Update shopping list members
+- Update shopping list items
 - Delete shopping list
 
 ### To run this application follow these steps
