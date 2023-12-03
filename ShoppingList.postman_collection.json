@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "11d4271d-445d-422a-900a-b117e4e7b0e1",
+		"name": "ShoppingList",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11286675"
+	},
+	"item": [
+		{
+			"name": "Homepage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY2NDJlNjViZmI1MTg3N2VlNTBhZmMiLCJ1c2VyRW1haWwiOiJ0ZXN0QGVtYWlsLmN6IiwiaWF0IjoxNzAxNTk4NTM4LCJleHAiOjE3MDE2ODQ5Mzh9.YutOU_0phtt0Wn7hwyknpbh_T6PAQGTfXpZj1QlHqKc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE - Shopping list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY2NDJlNjViZmI1MTg3N2VlNTBhZmMiLCJ1c2VyRW1haWwiOiJ0ZXN0QGVtYWlsLmN6IiwiaWF0IjoxNzAxNTI3NzA5LCJleHAiOjE3MDE2MTQxMDl9.t1oBhI9y3s6TpOkCA5e8Z-N8fA7Syr0ZmyQrbUutSVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Groceries\",\n    \"owner\": {\n        \"id\": \"test@email.cz\",\n        \"name\": \"Michal\"\n    },\n    \"members\": [\n        {\n            \"id\": \"test@email.cz\",\n            \"name\": \"Michal\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/shoppingList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shoppingList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID - Shopping List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY2NDJlNjViZmI1MTg3N2VlNTBhZmMiLCJ1c2VyRW1haWwiOiJ0ZXN0QGVtYWlsLmN6IiwiaWF0IjoxNzAxNTI3NzA5LCJleHAiOjE3MDE2MTQxMDl9.t1oBhI9y3s6TpOkCA5e8Z-N8fA7Syr0ZmyQrbUutSVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/shoppingList/6568d059fdcd4c283459a053",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shoppingList",
+						"6568d059fdcd4c283459a053"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL - Shopping List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY2NDJlNjViZmI1MTg3N2VlNTBhZmMiLCJ1c2VyRW1haWwiOiJ0ZXN0QGVtYWlsLmN6IiwiaWF0IjoxNzAxNTI3NzA5LCJleHAiOjE3MDE2MTQxMDl9.t1oBhI9y3s6TpOkCA5e8Z-N8fA7Syr0ZmyQrbUutSVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"currentPage\": 1,\n    \"pageSize\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/shoppingList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shoppingList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE - ShoppingList",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY2NDJlNjViZmI1MTg3N2VlNTBhZmMiLCJ1c2VyRW1haWwiOiJ0ZXN0QGVtYWlsLmN6IiwiaWF0IjoxNzAxNTI3NzA5LCJleHAiOjE3MDE2MTQxMDl9.t1oBhI9y3s6TpOkCA5e8Z-N8fA7Syr0ZmyQrbUutSVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Groceries from Lidl shop\",\n    \"archived\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/shoppingList/6568d059fdcd4c283459a053",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shoppingList",
+						"6568d059fdcd4c283459a053"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE ITEMS - ShoppingList",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Groceries from Lidl\",\n    \"owner\": {\n        \"id\": \"test@email.cz\",\n        \"name\": \"Michal\"\n    },\n    \"members\": [\n        {\n            \"id\": \"test@email.cz\",\n            \"name\": \"Michal\"\n        },\n        {\n            \"id\": \"larry@email.cz\",\n            \"name\": \"Larry\"\n        }\n    ],\n    \"items\": [\n        {\n            \"name\": \"Milk\" \n        }\n    ],\n    \"archived\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/shoppingList/6568d059fdcd4c283459a053/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shoppingList",
+						"6568d059fdcd4c283459a053",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE MEMBERS - ShoppingList",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Groceries from Lidl\",\n    \"owner\": {\n        \"id\": \"test@email.cz\",\n        \"name\": \"Michal\"\n    },\n    \"members\": [\n        {\n            \"id\": \"test@email.cz\",\n            \"name\": \"Michal\"\n        },\n        {\n            \"id\": \"larry@email.cz\",\n            \"name\": \"Larry\"\n        }\n    ],\n    \"items\": [\n        {\n            \"name\": \"Milk\" \n        }\n    ],\n    \"archived\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/shoppingList/6568d059fdcd4c283459a053/members",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shoppingList",
+						"6568d059fdcd4c283459a053",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - ShoppingList",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY2NDJlNjViZmI1MTg3N2VlNTBhZmMiLCJ1c2VyRW1haWwiOiJ0ZXN0QGVtYWlsLmN6IiwiaWF0IjoxNzAxNTI3NzA5LCJleHAiOjE3MDE2MTQxMDl9.t1oBhI9y3s6TpOkCA5e8Z-N8fA7Syr0ZmyQrbUutSVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/shoppingList/656c7f6421c9b051849f6492",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shoppingList",
+						"656c7f6421c9b051849f6492"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTER - User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@email.cz\",\n    \"name\": \"Michal\",\n    \"password\": \"heslo\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN - User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@email.cz\",\n    \"password\": \"heslo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

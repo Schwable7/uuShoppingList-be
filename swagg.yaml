@@ -7,7 +7,7 @@ info:
 servers:
     - url: http://localhost:3000/
 paths:
-  /create:
+  /shoppingList:
     post:
       summary: Create a new shopping list
       tags:
@@ -28,7 +28,6 @@ paths:
         '400':
           description: Invalid input
 
-  /list:
     get:
       summary: Get all shopping lists
       tags:
@@ -43,7 +42,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/ShoppingList'
 
-  /{id}/detail:
+  /shoppingList/{id}:
     get:
       summary: Get a shopping list by ID
       tags:
@@ -64,9 +63,8 @@ paths:
         '404':
           description: Shopping list not found
 
-  /{id}/update:
     put:
-      summary: Update a shopping list
+      summary: Update a shopping list title and archived status
       tags:
           - shopping list
       parameters:
@@ -93,7 +91,6 @@ paths:
         '404':
           description: Shopping list not found
 
-  /{id}/delete:
     delete:
       summary: Delete a shopping list
       tags:
@@ -110,6 +107,63 @@ paths:
         '404':
           description: Shopping list not found
 
+  /shoppingList/{id}/items:
+    put:
+      summary: Update a shopping list items
+      tags:
+        - shopping list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingList'
+      responses:
+        '200':
+          description: Shopping list updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingList'
+        '400':
+          description: Invalid input
+        '404':
+          description: Shopping list not found
+
+  /shoppingList/{id}/members:
+    put:
+      summary: Update a shopping list members
+      tags:
+        - shopping list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingList'
+      responses:
+        '200':
+          description: Shopping list updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingList'
+        '400':
+          description: Invalid input
+        '404':
+          description: Shopping list not found
 components:
   schemas:
     ShoppingList:
@@ -136,7 +190,7 @@ components:
       properties:
         id:
           type: string
-          example: "1"
+          example: "test@email.cz"
         name:
           type: string
           example: "Mike"
