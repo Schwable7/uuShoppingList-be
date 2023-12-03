@@ -33,11 +33,11 @@ class ShoppingListService {
         try {
             const shoppingList = await ShoppingList.findById(shoppingListId).lean();
             const userId = req.user.userEmail;
-            if (userId !== shoppingList.owner.id && !shoppingList.members.includes(userId)) {
-                res.status(403).send({error: `user with id '${userId}' is not allowed to access this shopping list'`});
-            }
             if (!shoppingList) {
                 return res.status(400).send({error: `shopping list with id '${shoppingListId}' doesn't exist`});
+            }
+            if (userId !== shoppingList.owner.id && !shoppingList.members.includes(userId)) {
+                res.status(403).send({error: `user with id '${userId}' is not allowed to access this shopping list'`});
             }
             return res.status(200).json(shoppingList);
         } catch (error) {
@@ -87,7 +87,7 @@ class ShoppingListService {
         try {
             const userId = req.user.userEmail;
             const shoppingList = await ShoppingList.findById(shoppingListId).lean();
-            if (shoppingList === null) {
+            if (!shoppingList) {
                 return res.status(400).send({message: `shopping list with id '${shoppingListId}' doesn't exist`});
             }
             if (userId !== shoppingList.owner.id) {
@@ -126,7 +126,7 @@ class ShoppingListService {
         try {
             const userId = req.user.userEmail;
             const shoppingList = await ShoppingList.findById(shoppingListId).lean();
-            if (shoppingList === null) {
+            if (!shoppingList) {
                 return res.status(400).send({message: `shopping list with id '${shoppingListId}' doesn't exist`});
             }
             if (userId !== shoppingList.owner.id && !shoppingList.members.includes(userId)) {
@@ -161,7 +161,7 @@ class ShoppingListService {
         try {
             const userId = req.user.userEmail;
             const shoppingList = await ShoppingList.findById(shoppingListId).lean();
-            if (shoppingList === null) {
+            if (!shoppingList) {
                 return res.status(400).send({message: `shopping list with id '${shoppingListId}' doesn't exist`});
             }
             if (userId !== shoppingList.owner.id && !shoppingList.members.includes(userId)) {
@@ -195,6 +195,9 @@ class ShoppingListService {
         try {
             const userId = req.user.userEmail;
             let shoppingList = await ShoppingList.findById(shoppingListId).lean();
+            if (!shoppingList) {
+                return res.status(400).send({message: `shopping list with id '${shoppingListId}' doesn't exist`});
+            }
             if (userId !== shoppingList.owner.id) {
                 res.status(403).send({error: `user with id '${userId}' is not allowed to access this shopping list'`});
             }
