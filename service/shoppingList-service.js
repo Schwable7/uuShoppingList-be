@@ -41,12 +41,7 @@ class ShoppingListService {
             }
             return res.status(200).json(shoppingList);
         } catch (error) {
-            if (error.message.startsWith("Cast to ObjectId failed")) {
-                return res.status(400).json({message: "shopping list with id: " + shoppingListId + " does not exist"});
-            }
-            else {
-                return res.status(500).json({message: error.message});
-            }
+            return res.status(500).json({message: error.message});
         }
     }
 
@@ -201,12 +196,8 @@ class ShoppingListService {
             if (userId !== shoppingList.owner.id) {
                 res.status(403).send({error: `user with id '${userId}' is not allowed to access this shopping list'`});
             }
-            shoppingList = await ShoppingList.findByIdAndDelete(shoppingListId).lean();
-            if (!shoppingList) {
-                return res.status(400).send({message: `shopping list with id '${shoppingListId}' doesn't exist`});
-            } else {
-                return res.status(200).json({message: "shopping list with id: " + shoppingListId + " was successfully deleted"});
-            }
+            await ShoppingList.findByIdAndDelete(shoppingListId).lean();
+            return res.status(200).json({message: "shopping list with id: " + shoppingListId + " was successfully deleted"});
         } catch (error) {
             return res.status(500).json({message: error.message});
         }
